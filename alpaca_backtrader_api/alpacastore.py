@@ -525,7 +525,7 @@ class AlpacaStore(with_metaclass(MetaSingleton, object)):
                                        curr.isoformat())
                 if r:
                     earliest_sample = r[0].t
-                    response = pd.concat([r.df, response], axis=0)
+                    response = pd.concat([r.df.tz_convert(NY), response], axis=0)
                     if earliest_sample <= (pytz.timezone(NY).localize(
                             start) if not start.tzname() else start):
                         got_all = True
